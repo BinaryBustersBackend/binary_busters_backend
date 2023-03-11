@@ -17,7 +17,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     # print(len(behavioural_questions))
-    return "Hello, Flask!"
+    return "Hello, we are Binary Busters!"
 
 #code questions bank
 code_list = []
@@ -30,7 +30,7 @@ behavioural_questions = ["Tell me about a time when you were not able to meet a 
                          "Give me an example of a time you faced a conflict while working on a team. How did you handle that?"
                          ]
 
-OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the satiation is bad. This is the first question. Situation: "
+OPENAI_PROMPT = "You are the Binary Buster assistant. I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the satiation is bad. This is the first question. Situation: "
 
 
 def random_behavioural_questions() -> int:
@@ -54,7 +54,7 @@ def openAI_response(user_response, question):
       response_quality = True if response['choices'][0]['message']['content'][0] == "1" else False
 
       #OpenAI's response in sentence
-      response_content = response['choices'][0]['message']['content'][3::] #double check the slicing
+      response_content = response['choices'][0]['message']['content'][2::]
 
       #retun info as dict
       return {"response_quality": response_quality, "response_content": response_content}
@@ -69,7 +69,7 @@ def send_question():
             "question": behavioural_questions[current_question_ID]
             }
 
-@app.route("/getOpenAIResponse", methods=["POST"], strict_slashes=False)
+@app.route("/getOpenAIResponse", methods=["POST", "GET"], strict_slashes=False)
 def receive_user_behavioural_response():
       #questionID on display on the frontend
       questionID = request.json["questionId"]
