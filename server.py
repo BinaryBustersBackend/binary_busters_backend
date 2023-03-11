@@ -23,15 +23,14 @@ def home():
 code_list = []
 
 #list of behavoural_questions
-behavioural_questions = ["Around the time I started working at Company X, the team I was working with was just finishing up on a very important project on a tight deadline. They had to review everything before submitting the work to the client, and my manager didn’t have a lot of time to pay attention to me to make sure I was caught up to speed.",
-                         "Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
+behavioural_questions = ["Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
                          "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?",
                          "Give me an example of a time when you set a goal and were able to meet or achieve it",
                          "Tell me about a time you had to quickly adjust your work priorities to meet changing demands.",
                          "Give me an example of a time you faced a conflict while working on a team. How did you handle that?"
                          ]
 
-OPENAI_PROMPT = "You are the Binary Buster assistant. I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the satiation is bad. This is the first question. Situation: "
+OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the situation is bad. This is the first question. Situation: "
 
 
 def random_behavioural_questions() -> int:
