@@ -16,12 +16,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    # print(len(behavioural_questions))
-    return "Hello, Flask!"
-
+    return "Hello, we are Binary Busters!"
 
 #list of behavoural_questions
-
 behavioural_questions = ["Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
                          "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?",
                          "Give me an example of a time when you set a goal and were able to meet or achieve it",
@@ -53,7 +50,7 @@ def openAI_response(user_response, question):
       response_quality = True if response['choices'][0]['message']['content'][0] == "1" else False
 
       #OpenAI's response in sentence
-      response_content = response['choices'][0]['message']['content'][3::] #double check the slicing
+      response_content = response['choices'][0]['message']['content'][2::]
 
       #retun info as dict
       return {"response_quality": response_quality, "response_content": response_content}
@@ -68,7 +65,7 @@ def send_question():
             "question": behavioural_questions[current_question_ID]
             }
 
-@app.route("/getOpenAIResponse", methods=["POST"], strict_slashes=False)
+@app.route("/getOpenAIResponse", methods=["POST", "GET"], strict_slashes=False)
 def receive_user_behavioural_response():
       #questionID on display on the frontend
       questionID = request.json["questionId"]
