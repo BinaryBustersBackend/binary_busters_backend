@@ -60,10 +60,9 @@ def openAI_response(user_response, question):
       return {"response_quality": response_quality, "response_content": response_content}
     
 
-@app.route('/getQuestion', methods=["GET"])
+@app.route('/getQuestion')
 def send_question():
       #sending the random question from the question back to the frontend
-      limit = int(request.args.get('limit', len(behavioural_questions)))
       current_question_ID = random_behavioural_questions()
       return {
             "questionId": current_question_ID,
@@ -81,11 +80,13 @@ def receive_user_behavioural_response():
       return openAI_response(userResponse, question)
 
 
-def read_files():
-    for i in range(1, 11):
-        with open(str(i) + ".txt", "r") as e:
-            code_list.append(e.read())
 
+def create_code_list():
+    folder_path = "python_buddy_code"
+    for i in range(1, 11):
+        file_path = os.path.join(folder_path, str(i) + ".txt")
+        with open(file_path, "r") as f:
+            code_list.append(f.read())
 
 if __name__ == '__main__':
     app.run(host="localhost", port=8000, debug=False)
