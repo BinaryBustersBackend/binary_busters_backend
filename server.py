@@ -23,7 +23,8 @@ def home():
 code_list = []
 
 #list of behavoural_questions
-behavioural_questions = ["Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
+behavioural_questions = ["Around the time I started working at Company X, the team I was working with was just finishing up on a very important project on a tight deadline. They had to review everything before submitting the work to the client, and my manager didn’t have a lot of time to pay attention to me to make sure I was caught up to speed.",
+                         "Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
                          "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?",
                          "Give me an example of a time when you set a goal and were able to meet or achieve it",
                          "Tell me about a time you had to quickly adjust your work priorities to meet changing demands.",
