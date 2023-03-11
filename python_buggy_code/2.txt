@@ -1,0 +1,8 @@
+3
+def calculate_product(n):
+    product = 1
+    for i in range(0, n):
+        product *= i
+    return product
+
+print(calculate_product(5))
