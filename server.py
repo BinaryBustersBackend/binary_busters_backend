@@ -19,9 +19,10 @@ def home():
     # print(len(behavioural_questions))
     return "Hello, Flask!"
 
+#code questions bank
+code_list = []
 
 #list of behavoural_questions
-
 behavioural_questions = ["Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
                          "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?",
                          "Give me an example of a time when you set a goal and were able to meet or achieve it",
@@ -77,6 +78,14 @@ def receive_user_behavioural_response():
       #finding the question in our question back that matches the displayed question
       question = behavioural_questions[questionID]
       return openAI_response(userResponse, question)
+
+
+def read_files():
+    for i in range(1, 11):
+        with open(str(i) + ".txt", "r") as e:
+            code_list.append(e.read())
+
+
 
 
 if __name__ == '__main__':
