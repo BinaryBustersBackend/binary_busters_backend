@@ -15,11 +15,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    create_code_dict()
+    print(code_dict)
     # print(len(behavioural_questions))
     return "Hello, we are Binary Busters!"
 
 #code questions bank
-code_list = []
+code_dict = {}
 
 #list of behavoural_questions
 behavioural_questions = ["Around the time I started working at Company X, the team I was working with was just finishing up on a very important project on a tight deadline. They had to review everything before submitting the work to the client, and my manager didn’t have a lot of time to pay attention to me to make sure I was caught up to speed.",
@@ -79,14 +81,11 @@ def receive_user_behavioural_response():
       question = behavioural_questions[questionID]
       return openAI_response(userResponse, question)
 
-
-
-def create_code_list():
-    folder_path = "python_buddy_code"
+def create_code_dict():
     for i in range(1, 11):
-        file_path = os.path.join(folder_path, str(i) + ".txt")
+        file_path = os.path.join(str(i) + ".txt")
         with open(file_path, "r") as f:
-            code_list.append(f.read())
+            code_dict[i] = f.read()
 
 if __name__ == '__main__':
     app.run(host="localhost", port=8000, debug=False)
