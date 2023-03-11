@@ -30,7 +30,7 @@ behavioural_questions = ["Around the time I started working at Company X, the te
                          "Give me an example of a time you faced a conflict while working on a team. How did you handle that?"
                          ]
 
-OPENAI_PROMPT = "You are the Binary Buster assistant. I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the satiation is bad. This is the first question. Situation: "
+OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the situation is bad. This is the first question. Situation: "
 
 
 def random_behavioural_questions() -> int:
@@ -43,9 +43,9 @@ def openAI_response(user_response, question):
       system_instruction = OPENAI_PROMPT + question
       
       #build message that is part of the request to OpenAI's API
-      message = [
-           {"role": "system", "content": system_instruction},
-           {"role": "user", "content": user_response}]
+      message = [{
+            "role": "system", "content": system_instruction,
+            "role": "user", "content": user_response}]
       
       #OpenAI's response
       response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=message)
@@ -54,7 +54,7 @@ def openAI_response(user_response, question):
       response_quality = True if response['choices'][0]['message']['content'][0] == "1" else False
 
       #OpenAI's response in sentence
-      response_content = response['choices'][0]['message']['content'][2:]
+      response_content = response['choices'][0]['message']['content'][2::]
 
       #retun info as dict
       return {"response_quality": response_quality, "response_content": response_content}
@@ -85,8 +85,6 @@ def read_files():
     for i in range(1, 11):
         with open(str(i) + ".txt", "r") as e:
             code_list.append(e.read())
-
-
 
 
 if __name__ == '__main__':
