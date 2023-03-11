@@ -4,7 +4,6 @@ import os
 import openai
 import random
 
-
 # Load .env that contains API key
 load_dotenv(".venv/.env")
 
@@ -61,9 +60,10 @@ def openAI_response(user_response, question):
       return {"response_quality": response_quality, "response_content": response_content}
     
 
-@app.route('/getQuestion')
+@app.route('/getQuestion', methods=["GET"])
 def send_question():
       #sending the random question from the question back to the frontend
+      limit = int(request.args.get('limit', len(behavioural_questions)))
       current_question_ID = random_behavioural_questions()
       return {
             "questionId": current_question_ID,
