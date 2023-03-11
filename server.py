@@ -16,7 +16,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-	return "Hello, Flask!"
+    # print(len(behavioural_questions))
+    return "Hello, Flask!"
 
 
 #list of behavoural_questions
@@ -31,10 +32,10 @@ behavioural_questions = ["Tell me about a time when you were not able to meet a 
 OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the satiation is bad. This is the first question. Situation: "
 
 
-
 def random_behavioural_questions() -> int:
       # ID(index) of the the random question and it's content
-      return random.randint(len(behavioural_questions))
+      return random.randint(0, len(behavioural_questions) - 1)
+
 
 def openAI_response(user_response, question):
       #system's instruction to OpenAI
@@ -62,7 +63,10 @@ def openAI_response(user_response, question):
 def send_question():
       #sending the random question from the question back to the frontend
       current_question_ID = random_behavioural_questions()
-      return {"questionId": current_question_ID, "question":behavioural_questions[current_question_ID]}
+      return {
+            "questionId": current_question_ID,
+            "question": behavioural_questions[current_question_ID]
+            }
 
 @app.route("/getOpenAIResponse", methods=["POST"], strict_slashes=False)
 def receive_user_behavioural_response():
