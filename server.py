@@ -12,15 +12,12 @@ load_dotenv(".venv/.env")
 # Set the API key
 openai.api_key = os.getenv('OPEN_API_KEY')
 
-
+# Setup flask
 app = Flask(__name__)
 CORS(app)
 
 @app.route("/")
 def home():
-    create_code_dict()
-    print(code_dict)
-    # print(len(behavioural_questions))
     return "Hello, we are Binary Busters!"
 
 #code questions bank
@@ -32,10 +29,11 @@ behavioural_questions = {
     2: "Mark is a manager at a software development company. He notices that there is a lack of communication between the developers and the quality assurance (QA) team. This lack of communication is leading to delays and misunderstandings that are affecting the quality of the final product. How can Mark help increase communication between the two teams?",
     3: "Samantha is a team member at a busy marketing agency. She has noticed that there is a lot of negativity and complaining among her colleagues, which is affecting morale and productivity. What can she do to lighten the atmosphere?",
     4: "Karen is a team member at a startup company. She has noticed that one of her colleagues, Tom, often makes offensive jokes and comments that are disrespectful towards women and people of color. Karen finds Tom's behavior offensive and unprofessional, and she knows that other team members feel the same way. How can Karen address the issues she's been noticing?",
-    5: "David is a team leader at a software development company. He has noticed that some of his team members have been struggling with stress and burnout due to tight deadlines and heavy workloads. David wants to show his team that he understands the pressure they are under and cares about their well-being. How should David show he's appreciative of their hard work?"
+    5: "David is a team leader at a software development company. He has noticed that some of his team members have been struggling with stress and burnout due to tight deadlines and heavy workloads. David wants to show his team that he understands the pressure they are under and cares about their well-being. How should David show he's appreciative of their hard work?",
+    6: "Around the time I started working at Company X, the team I was working with was just finishing up on a very important project on a tight deadline. They had to review everything before submitting the work to the client, and my manager didn't have a lot of time to pay attention to me to make sure I was caught up to speed."
 }
 
-OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the situation is bad. This is the first question. Situation: "
+OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the situation is bad. Give a max response of 150 characters for my feedback. Situation: "
 
 
 def random_behavioural_questions() -> int:
@@ -69,17 +67,9 @@ def openAI_response(user_response, question):
 def send_question():
       #sending the random question from the question back to the frontend
       limit = int(request.args.get('limit', len(behavioural_questions)))
-      
       questions = dict(itertools.islice(behavioural_questions.items(), limit))
-
       return questions
 
-    #   current_question_ID = random_behavioural_questions()
-
-    #   return {
-    #         "questionId": current_question_ID,
-    #         "question": behavioural_questions[current_question_ID]
-    #         }
 
 @app.route("/getOpenAIResponse", methods=["POST", "GET"], strict_slashes=False)
 def receive_user_behavioural_response():
@@ -91,6 +81,7 @@ def receive_user_behavioural_response():
       question = behavioural_questions[questionID]
       return openAI_response(userResponse, question)
 
+
 def create_code_dict():
     for i in range(1, 11):
         
@@ -100,6 +91,7 @@ def create_code_dict():
             modify_answer = list(map(lambda x: int(x), answer))
             question = f.read() # Store second line as question
             code_dict[i] = [question, modify_answer] # Store question and answer in a list
+
 
 @app.route('/getCodeQuestion', methods=["GET"])
 def send_code_questions():
