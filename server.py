@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, CORS
 from dotenv import load_dotenv
 import os
 import openai
@@ -13,6 +13,7 @@ openai.api_key = os.getenv('OPEN_API_KEY')
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def home():
