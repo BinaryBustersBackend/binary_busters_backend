@@ -4,7 +4,6 @@ import os
 import openai
 import random
 import itertools
-from urllib.parse import urlparse
 
 # Load .env that contains API key
 load_dotenv(".venv/.env")
@@ -96,7 +95,7 @@ def send_question():
       #sending the random question from the question back to the frontend
       limit = int(request.args.get('limit', len(behavioural_questions)))
       
-      questions = dict(itertools.islice(behavioural_questions.items), limit)
+      questions = dict(itertools.islice(behavioural_questions.items(), limit))
 
       return questions
 
@@ -121,28 +120,16 @@ def create_code_dict():
     for i in range(1, 11):
         file_path = os.path.join(str(i) + ".txt")
         with open(file_path, "r") as f:
-            file_contents = f.readlines()
-            question = file_contents[1].strip() # Store second line as question
-            answer = file_contents[0].strip() # Store first line as answer
-            code_dict[i] = [question, answer] # Store question and answer in a list
+            answer = f.readline().rstrip().split(',')  # Store first line as answer
+            modify_answer = list(map(lambda x: int(x), answer))
+            question = f.read() # Store second line as question
+            code_dict[i] = [question, modify_answer] # Store question and answer in a list
 
 @app.route('/getCodeQuestion', methods=["GET"])
 def send_code_questions():
      create_code_dict()
      limit = int(request.args.get('limit', len(code_dict)))
-     questions = dict(itertools.islice(code_dict.items), limit)
+     questions = dict(itertools.islice(code_dict.items(), limit))
      return questions
 
-     
 
-
-# if __name__ == '__main__':
-#     # cloud host url
-#     host_url = "https://binarybusterbackend.onrender.com/"
-
-#     # Parse url to get the hostname and port
-#     parsed_url = urlparse(host_url)
-#     host = parsed_url.hostname
-#     port = parsed_url.port or 80
-
-#     app.run(host=host, port=port, debug=False)
