@@ -118,7 +118,8 @@ def receive_user_behavioural_response():
 
 def create_code_dict():
     for i in range(1, 11):
-        file_path = os.path.join(str(i) + ".txt")
+        
+        file_path = os.path.join("./python_buggy_code/" + str(i) + ".txt")
         with open(file_path, "r") as f:
             answer = f.readline().rstrip().split(',')  # Store first line as answer
             modify_answer = list(map(lambda x: int(x), answer))
@@ -131,5 +132,3 @@ def send_code_questions():
      limit = int(request.args.get('limit', len(code_dict)))
      questions = dict(itertools.islice(code_dict.items(), limit))
      return questions
-
-
