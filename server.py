@@ -75,9 +75,9 @@ def openAI_response(user_response, question):
       system_instruction = OPENAI_PROMPT + question
       
       #build message that is part of the request to OpenAI's API
-      message = [{
-            "role": "system", "content": system_instruction,
-            "role": "user", "content": user_response}]
+      message = [
+           {"role": "system", "content": system_instruction},
+            {"role": "user", "content": user_response}]
       
       #OpenAI's response
       response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=message)
@@ -86,7 +86,7 @@ def openAI_response(user_response, question):
       response_quality = True if response['choices'][0]['message']['content'][0] == "1" else False
 
       #OpenAI's response in sentence
-      response_content = response['choices'][0]['message']['content'][2::]
+      response_content = response['choices'][0]['message']['content'][2:]
 
       #retun info as dict
       return {"response_quality": response_quality, "response_content": response_content}
