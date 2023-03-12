@@ -29,7 +29,7 @@ code_dict = {}
 code_answer_dict = {}
 
 
-#list of behavoural_questions
+#dict of behavoural_questions
 behavioural_questions = {
     1: "Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
     2: "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?",
@@ -40,14 +40,14 @@ behavioural_questions = {
     7: "Tell me about a time you stepped up into a leadership role.",
     8: "Describe a situation when you negotiated with others in your organization to reach agreement.",
     9: "We've all had to work with people that don't like us. How do you deal with someone that doesn't like you?",
-    10: "We all make mistakes we wish we could take back. Tell me about a time you wish you’d handled a situation differently with a colleague.",
+    10: "We all make mistakes we wish we could take back. Tell me about a time you wish you would handled a situation differently with a colleague.",
     11: "Tell me about a time when you received negative feedback from your manager. How did you respond?",
     12: "Tell me about a time when you missed an obvious solution to a problem.",
     13: "Tell me about a time when you faced a problem that had multiple possible solutions.",
     14: "Tell me about a time when you came up with a new approach to a problem.", 
     15: "Describe a situation in which you found a creative way to overcome an obstacle.",
     16: "How have you leveraged data to develop a strategy?", 
-    17: "Tell me about a time when you were 75% through a project, & you had to pivot strategy", 
+    17: "Tell me about a time when you were 75 percent through a project, and you had to pivot strategy", 
     18: "Tell me about a time when you had to choose between technologies for a project", 
     19: "Tell me about a time you had to deal with ambiguity", 
     20: "Describe a time when you sacrificed short term goals for long term success",
