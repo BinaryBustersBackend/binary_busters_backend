@@ -17,11 +17,16 @@ app = Flask(__name__)
 def home():
     create_code_dict()
     print(code_dict)
+    print(code_answer_dict)
     # print(len(behavioural_questions))
     return "Hello, we are Binary Busters!"
 
 #code questions bank
 code_dict = {}
+
+#code question bank answers
+code_answer_dict = {}
+
 
 #list of behavoural_questions
 behavioural_questions = ["Around the time I started working at Company X, the team I was working with was just finishing up on a very important project on a tight deadline. They had to review everything before submitting the work to the client, and my manager didn’t have a lot of time to pay attention to me to make sure I was caught up to speed.",
@@ -86,7 +91,15 @@ def create_code_dict():
     for i in range(1, 11):
         file_path = os.path.join(str(i) + ".txt")
         with open(file_path, "r") as f:
-            code_dict[i] = f.read()
+            file_contents = f.readlines()
+            code_answer_dict[i] = file_contents[0].strip() # Store first line as answer
+            code_dict[i] = "".join(file_contents[1:]) # Store rest of the contents
+
+# @app.route('/getCodeQuestion', methods=["GET"])
+# def send_code_questions():
+#      create_code_dict()
+
+     
 
 if __name__ == '__main__':
     app.run(host="localhost", port=8000, debug=False)
