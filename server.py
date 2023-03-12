@@ -28,38 +28,11 @@ code_dict = {}
 
 #dict of behavoural_questions
 behavioural_questions = {
-    1: "Tell me about a time when you were not able to meet a time commitment. What prevented you from meeting it? What was the outcome and what did you learn from it?",
-    2: "Describe a long-term project that you managed. How did you keep everything moving along in a timely manner?",
-    3: "Give me an example of a time when you set a goal and were able to meet or achieve it.",
-    4: "Tell me about a time you had to quickly adjust your work priorities to meet changing demands.",
-    5: "Tell me about the toughest decision you've had to make in the past six months",
-    6: "What did you do when you needed to motivate a group of individuals?", 
-    7: "Tell me about a time you stepped up into a leadership role.",
-    8: "Describe a situation when you negotiated with others in your organization to reach agreement.",
-    9: "We've all had to work with people that don't like us. How do you deal with someone that doesn't like you?",
-    10: "We all make mistakes we wish we could take back. Tell me about a time you wish you would handled a situation differently with a colleague.",
-    11: "Tell me about a time when you received negative feedback from your manager. How did you respond?",
-    12: "Tell me about a time when you missed an obvious solution to a problem.",
-    13: "Tell me about a time when you faced a problem that had multiple possible solutions.",
-    14: "Tell me about a time when you came up with a new approach to a problem.", 
-    15: "Describe a situation in which you found a creative way to overcome an obstacle.",
-    16: "How have you leveraged data to develop a strategy?", 
-    17: "Tell me about a time when you were 75 percent through a project, and you had to pivot strategy", 
-    18: "Tell me about a time when you had to choose between technologies for a project", 
-    19: "Tell me about a time you had to deal with ambiguity", 
-    20: "Describe a time when you sacrificed short term goals for long term success",
-    21: "Provide an example of when you personally demonstrate ownership.", 
-    22: "What's your greatest strength?", 
-    23: "What's your greatest weakness?", 
-    24: "Tell me about a time you recovered from a difficult situation.", 
-    25: "How do you handle multiple tasks at a limited time?", 
-    26: "Describe a time when you had to work under pressure. How did you handle the stress, and what was the outcome?", 
-    27: "Tell me about a time when you had to make a decision with limited information. What factors did you consider, and what was the outcome?", 
-    28: "Describe a time when you had to work with a team member who was not pulling their weight. How did you handle the situation, and what was the outcome?",
-    29: "Describe a time when you had to work with a difficult manager. How did you handle the situation, and what was the outcome?",
-    30: "Tell me about a time when you had to overcome a communication barrier. What steps did you take to address the barrier, and what was the outcome?",
-    31: "Describe a time when you had to work with a team to develop a new process. What steps did you take, and what was the outcome?",
-    32: "Tell me about a time when you had to work with a team to improve the efficiency of a process. What steps did you take, and what was the outcome?"
+    1: "Emily has been struggling with her workload lately. She's been working on a major project that has required a lot of her time and energy. She's been feeling stressed and anxious, and it's starting to affect her performance at work. How would you help her in this situation?",
+    2: "Mark is a manager at a software development company. He notices that there is a lack of communication between the developers and the quality assurance (QA) team. This lack of communication is leading to delays and misunderstandings that are affecting the quality of the final product. How can Mark help increase communication between the two teams?",
+    3: "Samantha is a team member at a busy marketing agency. She has noticed that there is a lot of negativity and complaining among her colleagues, which is affecting morale and productivity. What can she do to lighten the atmosphere?",
+    4: "Karen is a team member at a startup company. She has noticed that one of her colleagues, Tom, often makes offensive jokes and comments that are disrespectful towards women and people of color. Karen finds Tom's behavior offensive and unprofessional, and she knows that other team members feel the same way. How can Karen address the issues she's been noticing?",
+    5: "David is a team leader at a software development company. He has noticed that some of his team members have been struggling with stress and burnout due to tight deadlines and heavy workloads. David wants to show his team that he understands the pressure they are under and cares about their well-being. How should David show he's appreciative of their hard work?"
 }
 
 OPENAI_PROMPT = "I will be giving you workplace situation questions and I want you to evaluate my response. At the start of the sentence provide me a 1 or 0. 1 as in if my response to the situation was good and 0 if my response to the situation is bad. This is the first question. Situation: "
