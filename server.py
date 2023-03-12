@@ -125,13 +125,13 @@ def create_code_list():
             code_list.append(f.read())
 
 
-if __name__ == '__main__':
-    # cloud host url
-    host_url = "https://binarybusterbackend.onrender.com/"
+# if __name__ == '__main__':
+#     # cloud host url
+#     host_url = "https://binarybusterbackend.onrender.com/"
 
-    # Parse url to get the hostname and port
-    parsed_url = urlparse(host_url)
-    host = parsed_url.hostname
-    port = parsed_url.port or 80
+#     # Parse url to get the hostname and port
+#     parsed_url = urlparse(host_url)
+#     host = parsed_url.hostname
+#     port = parsed_url.port or 80
 
-    app.run(host=host, port=port, debug=False)
+#     app.run(host=host, port=port, debug=False)
