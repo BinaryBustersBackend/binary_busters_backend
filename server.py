@@ -18,16 +18,11 @@ app = Flask(__name__)
 def home():
     create_code_dict()
     print(code_dict)
-    print(code_answer_dict)
     # print(len(behavioural_questions))
     return "Hello, we are Binary Busters!"
 
 #code questions bank
 code_dict = {}
-
-#code question bank answers
-code_answer_dict = {}
-
 
 #dict of behavoural_questions
 behavioural_questions = {
@@ -126,12 +121,16 @@ def create_code_dict():
         file_path = os.path.join(str(i) + ".txt")
         with open(file_path, "r") as f:
             file_contents = f.readlines()
-            code_answer_dict[i] = file_contents[0].strip() # Store first line as answer
-            code_dict[i] = "".join(file_contents[1:]) # Store rest of the contents
+            question = file_contents[1].strip() # Store second line as question
+            answer = file_contents[0].strip() # Store first line as answer
+            code_dict[i] = [question, answer] # Store question and answer in a list
 
-# @app.route('/getCodeQuestion', methods=["GET"])
-# def send_code_questions():
-#      create_code_dict()
+@app.route('/getCodeQuestion', methods=["GET"])
+def send_code_questions():
+     create_code_dict()
+     limit = int(request.args.get('limit', len(code_dict)))
+     questions = dict(itertools.islice(code_dict.items), limit)
+     return questions
 
      
 
